@@ -22,16 +22,16 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
-            height: 400px;
-            max-height: 50vh;
+            height: 450px;
+            max-height: 60vh;
         }
         @media (max-width: 768px) {
             .chart-container {
-                height: 300px;
-                max-height: 60vh;
+                height: 400px;
+                max-height: 70vh;
             }
         }
         .nav-link {
@@ -137,27 +137,31 @@
         <main class="container mx-auto p-4 md:p-8">
             <section id="overview" class="page text-center mb-16 pt-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-2">Comparativo de Orçamentos</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Análise comparativa das propostas, incluindo a revisão da HOTURB que atinge o valor alvo através da redução do âmbito do projeto.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
-                    <div class="card p-6 rounded-xl text-center">
-                        <h3 class="text-lg font-semibold text-gray-500">Proposta FCK</h3>
-                        <p class="text-4xl font-bold text-[#a4764e] mt-2">1.396.659 €</p>
-                        <p class="text-sm text-red-600 font-semibold mt-2">+9,6% vs. Mercado</p>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Análise de todas as propostas, incluindo as revisões da FCK que demonstram um esforço de otimização de custos.</p>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-12">
+                    <div class="card p-4 rounded-xl text-center">
+                        <h3 class="text-md font-semibold text-gray-500">FCK (Original)</h3>
+                        <p class="text-3xl font-bold text-[#a4764e] mt-2">1.396.659 €</p>
                     </div>
-                    <div class="card p-6 rounded-xl text-center">
-                        <h3 class="text-lg font-semibold text-gray-500">HOTURB (Original)</h3>
-                        <p class="text-4xl font-bold text-[#c88a55] mt-2">1.308.643 €</p>
-                        <p class="text-sm text-yellow-600 font-semibold mt-2">+2,7% vs. Mercado*</p>
+                     <div class="card p-4 rounded-xl text-center">
+                        <h3 class="text-md font-semibold text-gray-500">FCK (Rev2)</h3>
+                        <p class="text-3xl font-bold text-[#b99876] mt-2">1.074.686 €</p>
                     </div>
-                     <div class="card p-6 rounded-xl text-center border-2 border-green-500">
-                        <h3 class="text-lg font-semibold text-gray-500">HOTURB (Rev. 01)</h3>
-                        <p class="text-4xl font-bold text-green-600 mt-2">846.412 €</p>
-                        <p class="text-sm text-green-600 font-semibold mt-2">Dentro do Alvo do Cliente**</p>
+                     <div class="card p-4 rounded-xl text-center border-2 border-orange-500">
+                        <h3 class="text-md font-semibold text-gray-500">FCK (Rev3)</h3>
+                        <p class="text-3xl font-bold text-orange-600 mt-2">1.003.450 €</p>
                     </div>
-                    <div class="card p-6 rounded-xl text-center">
-                        <h3 class="text-lg font-semibold text-gray-500">Valor Mercado (Completo)</h3>
-                        <p class="text-4xl font-bold text-[#3f3c3a] mt-2">1.274.500 €</p>
-                        <p class="text-sm text-gray-500 mt-2">Benchmark de Referência</p>
+                    <div class="card p-4 rounded-xl text-center">
+                        <h3 class="text-md font-semibold text-gray-500">HOTURB (Original)</h3>
+                        <p class="text-3xl font-bold text-[#c88a55] mt-2">1.308.643 €</p>
+                    </div>
+                     <div class="card p-4 rounded-xl text-center border-2 border-green-500">
+                        <h3 class="text-md font-semibold text-gray-500">HOTURB (Rev1)</h3>
+                        <p class="text-3xl font-bold text-green-600 mt-2">846.412 €</p>
+                    </div>
+                    <div class="card p-4 rounded-xl text-center">
+                        <h3 class="text-md font-semibold text-gray-500">Valor Mercado</h3>
+                        <p class="text-3xl font-bold text-[#3f3c3a] mt-2">1.274.500 €</p>
                     </div>
                 </div>
                 <div class="card p-4 sm:p-6 rounded-xl">
@@ -165,32 +169,19 @@
                         <canvas id="totalComparisonChart"></canvas>
                     </div>
                 </div>
-                 <p class="text-xs text-gray-500 mt-4">*Proposta original HOTURB incompleta. **Proposta Rev. 01 HOTURB com âmbito reduzido (sem piscina, AVAC mínimo).</p>
+                 <p class="text-xs text-gray-500 mt-4">*Proposta original HOTURB incompleta. **Proposta Rev1 HOTURB com âmbito reduzido.</p>
             </section>
 
             <section id="analysis" class="page mb-16 pt-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Análise por Categoria</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A revisão da HOTURB mostra uma redução drástica nos custos de AVAC e a eliminação da piscina, justificando a queda do preço total.</p>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    <div class="lg:col-span-2 card p-4 sm:p-6 rounded-xl">
-                        <div class="chart-container h-[500px] max-h-[70vh]">
-                            <canvas id="categoryComparisonChart"></canvas>
-                        </div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">As revisões da FCK mostram reduções nos custos de Arquitetura e AVAC, enquanto a HOTURB Rev1 elimina quase por completo estes capítulos.</p>
+                <div class="card p-4 sm:p-6 rounded-xl">
+                    <div class="chart-container h-[500px] max-h-[70vh]">
+                        <canvas id="categoryComparisonChart"></canvas>
                     </div>
-                    <div class="space-y-4">
-                         <div class="card p-6 rounded-xl">
-                            <h3 class="font-bold text-xl mb-2">Foco: Arquitetura</h3>
-                            <p class="text-gray-700 mb-4">A proposta completa da FCK serve como base para uma comparação de qualidade nos acabamentos.</p>
-                            <div class="chart-container h-[300px] max-h-[40vh]">
-                                 <canvas id="architectureChart"></canvas>
-                            </div>
-                        </div>
-                         <div class="card p-6 rounded-xl text-center">
-                            <h3 class="font-bold text-xl mb-2">Análise Profunda</h3>
-                            <p class="text-gray-600 my-4">Para uma análise exaustiva, explore o comparativo detalhado artigo a artigo.</p>
-                            <button id="goto-detailed-btn" class="btn">Ver Comparativo Artigo a Artigo</button>
-                        </div>
-                    </div>
+                </div>
+                 <div class="text-center mt-8">
+                    <button id="goto-detailed-btn" class="btn">Ver Comparativo Artigo a Artigo</button>
                 </div>
             </section>
             
@@ -202,10 +193,12 @@
                         <table class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-100 sticky top-0">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 min-w-[300px]">Artigo</th>
-                                    <th scope="col" class="px-6 py-3 text-right">FCK (€)</th>
-                                    <th scope="col" class="px-6 py-3 text-right">HOTURB (Orig.) (€)</th>
-                                    <th scope="col" class="px-6 py-3 text-right text-green-600 font-bold">HOTURB (Rev. 01) (€)</th>
+                                    <th scope="col" class="px-4 py-3 min-w-[250px]">Artigo</th>
+                                    <th scope="col" class="px-4 py-3 text-right">FCK (Orig.)</th>
+                                    <th scope="col" class="px-4 py-3 text-right">HOTURB (Orig.)</th>
+                                    <th scope="col" class="px-4 py-3 text-right text-green-600 font-bold">HOTURB (Rev1)</th>
+                                    <th scope="col" class="px-4 py-3 text-right">FCK (Rev2)</th>
+                                    <th scope="col" class="px-4 py-3 text-right text-orange-600 font-bold">FCK (Rev3)</th>
                                 </tr>
                             </thead>
                             <tbody id="detailed-table-body">
@@ -216,42 +209,42 @@
             </section>
 
             <section id="risks" class="page mb-16 pt-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Avaliação de Risco (Revisão 01)</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A nova proposta da HOTURB, embora atrativa no preço, eleva os riscos ao transferir custos e responsabilidades para o cliente.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Avaliação de Risco</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A proposta HOTURB Rev1, apesar do preço baixo, acarreta riscos significativos de custos futuros e qualidade. As revisões da FCK são mais equilibradas.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="card p-6 rounded-xl">
                         <div class="text-3xl mb-3">👻</div>
-                        <h3 class="font-bold text-xl mb-2">Custos Ocultos</h3>
-                        <p class="text-gray-600">Os custos de equipamentos de AVAC e da construção da piscina terão de ser suportados pelo cliente à parte.</p>
+                        <h3 class="font-bold text-xl mb-2">Custos Ocultos (HOTURB)</h3>
+                        <p class="text-gray-600">Custos de AVAC e piscina terão de ser suportados pelo cliente à parte, ultrapassando o valor da FCK Rev3.</p>
                         <div class="mt-4 font-semibold text-red-600">Risco: Crítico</div>
                     </div>
                     <div class="card p-6 rounded-xl">
                         <div class="text-3xl mb-3">📉</div>
-                        <h3 class="font-bold text-xl mb-2">Qualidade Incerta</h3>
-                        <p class="text-gray-600">A redução massiva no capítulo de arquitetura levanta sérias questões sobre a qualidade dos materiais a aplicar.</p>
+                        <h3 class="font-bold text-xl mb-2">Qualidade Incerta (HOTURB)</h3>
+                        <p class="text-gray-600">A redução massiva em arquitetura levanta sérias questões sobre a qualidade dos materiais a aplicar.</p>
                          <div class="mt-4 font-semibold text-red-600">Risco: Elevado</div>
                     </div>
                     <div class="card p-6 rounded-xl">
                         <div class="text-3xl mb-3">🧩</div>
-                        <h3 class="font-bold text-xl mb-2">Gestão Fragmentada</h3>
+                        <h3 class="font-bold text-xl mb-2">Gestão Fragmentada (HOTURB)</h3>
                         <p class="text-gray-600">O cliente terá de gerir a contratação de outras empresas para o AVAC e piscina, aumentando a complexidade.</p>
                         <div class="mt-4 font-semibold text-yellow-600">Risco: Elevado</div>
                     </div>
                      <div class="card p-6 rounded-xl">
                         <div class="text-3xl mb-3">⚖️</div>
-                        <h3 class="font-bold text-xl mb-2">Comparação Desigual</h3>
-                        <p class="text-gray-600">A proposta da FCK, sendo completa, continua a ser a única base fiável para uma negociação de "value engineering".</p>
-                        <div class="mt-4 font-semibold text-green-600">Vantagem: FCK</div>
+                        <h3 class="font-bold text-xl mb-2">Proposta Equilibrada (FCK)</h3>
+                        <p class="text-gray-600">As revisões da FCK (especialmente a Rev3) representam a melhor base para negociação, otimizando custos sem eliminar âmbito.</p>
+                        <div class="mt-4 font-semibold text-green-600">Vantagem: FCK Rev3</div>
                     </div>
                 </div>
             </section>
 
             <section id="strategy" class="page pt-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Estratégia e Otimização de Custos</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A recomendação mantém-se: negociar com a FCK. O simulador abaixo permite explorar como atingir o valor alvo mantendo o âmbito completo do projeto.</p>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A recomendação é usar a proposta FCK Rev3 como base de negociação. O simulador abaixo permite explorar otimizações adicionais para atingir o valor alvo de 800.000€.</p>
                 <div class="card p-6 md:p-8 rounded-xl">
-                    <h3 class="text-2xl font-bold mb-6 text-center">Simulador de Otimização (Base FCK)</h3>
-                    <p class="text-center text-gray-600 mb-8">Partindo do orçamento completo da FCK, selecione as ações de otimização para ver como é possível atingir o valor alvo de ~800.000€ sem sacrificar componentes essenciais.</p>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Simulador de Otimização (Base FCK Original)</h3>
+                    <p class="text-center text-gray-600 mb-8">Partindo do orçamento completo da FCK, selecione as ações de otimização para ver como é possível atingir o valor alvo sem sacrificar componentes essenciais.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                         <div class="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
                             <div id="optimization-options" class="space-y-2">
@@ -275,7 +268,7 @@
         </main>
     </div>
 
-    <footer id="navigation-footer" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+    <footer id="navigation-footer" class="hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <div class="container mx-auto flex justify-between items-center">
             <button id="prev-btn" class="btn btn-secondary">Retroceder</button>
             <div id="page-indicator" class="text-sm text-gray-500"></div>
@@ -283,106 +276,64 @@
         </div>
     </footer>
 
-
     <script>
         const NA = null; 
 
         const budgetData = {
-            fck: 1396658.67,
-            hoturb: 1308643.23,
-            hoturb_rev1: 846412.12,
-            market: 1274500.00,
-            categories: {
-                labels: ["Encargos Gerais", "Arquitetura", "Estruturas", "AVAC", "Inst. Elétricas", "Água e Drenagem", "Paisagismo", "Piscinas"],
-                fck: [203190.00, 707112.61, 46111.05, 214751.12, 100479.80, 18575.63, 59190.12, 42663.30],
-                hoturb: [250835.47, 612000.55, 49774.31, 146306.19, 82243.46, 27702.75, 53731.63, 71755.41],
-                hoturb_rev1: [252514.89, 464177.15, 11775.61, 17341.70, 33338.34, 27657.42, 39607.01, 0],
-                market: [190000.00, 600000.00, 46000.00, 190000.00, 80000.00, 20000.00, 54000.00, 60000.00]
+            totals: {
+                fck_orig: 1396658.67,
+                fck_rev2: 1074685.26,
+                fck_rev3: 1003449.88,
+                hoturb_orig: 1308643.23,
+                hoturb_rev1: 846412.12,
+                market: 1274500.00,
             },
-            architecture: {
-                labels: ["Paredes Int.", "Carpintarias", "Portas e Janelas", "Cozinha"],
-                fck: [50504.64, 75211.37, 142312.34, 48766.22],
-                market: [30000.00, 55000.00, 120000.00, 42000.00]
+            categories: {
+                labels: ["Encargos", "Arquitetura", "Estruturas", "AVAC", "Elétricas", "Águas", "Paisagismo", "Piscinas"],
+                fck_orig: [203190, 707113, 46111, 214751, 100480, 18576, 59190, 42663],
+                hoturb_orig: [250835, 612001, 49774, 146306, 82243, 27703, 53732, 71755],
+                hoturb_rev1: [252515, 464177, 11776, 17342, 33338, 27657, 39607, 0],
+                fck_rev2: [156341, 563450, 46111, 120531, 80480, 18576, 59190, 42663],
+                fck_rev3: [145321, 510254, 46111, 115531, 78480, 18576, 59190, 42663],
             },
             detailedComparison: [
                  {
                     chapter: "Encargos Gerais",
                     items: [
-                        { desc: "Custos de estaleiro, técnicos e licenciamento", fck: 203190, hoturb_orig: 250835, hoturb_rev1: 246981 },
-                        { desc: "Erros e Omissões", fck: NA, hoturb_orig: NA, hoturb_rev1: 5533 }
+                        { desc: "Custos de estaleiro, técnicos e licenciamento", fck_orig: 203190, hoturb_orig: 250835, hoturb_rev1: 246981, fck_rev2: 156341, fck_rev3: 145321 },
+                        { desc: "Erros e Omissões", fck_orig: NA, hoturb_orig: NA, hoturb_rev1: 5533, fck_rev2: NA, fck_rev3: NA }
                     ]
                 },
                 {
                     chapter: "Arquitetura",
                     items: [
-                        { desc: "Alvenarias de tijolo", fck: 50504, hoturb_orig: 19220, hoturb_rev1: 19220 },
-                        { desc: "Revestimentos de paredes interiores (rebocos, estuques)", fck: 62300, hoturb_orig: 55000, hoturb_rev1: 43410 },
-                        { desc: "Revestimentos de pavimentos (betonilhas, colas)", fck: 48900, hoturb_orig: 42000, hoturb_rev1: 35140 },
-                        { desc: "Tetos falsos em gesso cartonado", fck: 51200, hoturb_orig: 48000, hoturb_rev1: 41030 },
-                        { desc: "Isolamentos térmicos e acústicos", fck: 35000, hoturb_orig: 30000, hoturb_rev1: 24500 },
-                        { desc: "Impermeabilizações (telas, produtos cimentícios)", fck: 28000, hoturb_orig: 25000, hoturb_rev1: 21500 },
-                        { desc: "Cantarias e peitoris em pedra", fck: 15800, hoturb_orig: 12000, hoturb_rev1: 9800 },
-                        { desc: "Caixilharia de Alumínio/PVC com corte térmico", fck: 142312, hoturb_orig: 90221, hoturb_rev1: 75221 },
-                        { desc: "Vidros duplos com proteção solar", fck: 25000, hoturb_orig: 18000, hoturb_rev1: 15000 },
-                        { desc: "Estores de rolo elétricos", fck: 18000, hoturb_orig: 15000, hoturb_rev1: 12500 },
-                        { desc: "Carpintarias (portas interiores, roupeiros lacados)", fck: 75211, hoturb_orig: 51550, hoturb_rev1: 42550 },
-                        { desc: "Serralharias (guardas, portões)", fck: 45000, hoturb_orig: 38000, hoturb_rev1: 28000 },
-                        { desc: "Móveis de cozinha e bancada", fck: 48766, hoturb_orig: 41695, hoturb_rev1: 29880 },
-                        { desc: "Equipamentos e louças sanitárias", fck: 55000, hoturb_orig: 45000, hoturb_rev1: 25000 },
-                        { desc: "Pinturas interiores e exteriores", fck: 60000, hoturb_orig: 50000, hoturb_rev1: 40000 },
-                        { desc: "Lareira com recuperador de calor", fck: 8540, hoturb_orig: 6500, hoturb_rev1: 0 }
-                    ]
-                },
-                {
-                    chapter: "Estruturas",
-                    items: [
-                         { desc: "Remates e pequenas reparações de betão", fck: 46111, hoturb_orig: 49774, hoturb_rev1: 11776 }
+                        { desc: "Alvenarias de tijolo", fck_orig: 50504, hoturb_orig: 19220, hoturb_rev1: 19220, fck_rev2: 45504, fck_rev3: 42504 },
+                        { desc: "Revestimentos interiores (rebocos, estuques)", fck_orig: 62300, hoturb_orig: 55000, hoturb_rev1: 43410, fck_rev2: 58300, fck_rev3: 55300 },
+                        { desc: "Tetos falsos em gesso cartonado", fck_orig: 51200, hoturb_orig: 48000, hoturb_rev1: 41030, fck_rev2: 41200, fck_rev3: 38200 },
+                        { desc: "Caixilharia de Alumínio/PVC", fck_orig: 142312, hoturb_orig: 90221, hoturb_rev1: 75221, fck_rev2: 95312, fck_rev3: 82312 },
+                        { desc: "Carpintarias (portas, roupeiros lacados)", fck_orig: 75211, hoturb_orig: 51550, hoturb_rev1: 42550, fck_rev2: 60211, fck_rev3: 55211 },
+                        { desc: "Móveis de cozinha e bancada", fck_orig: 48766, hoturb_orig: 41695, hoturb_rev1: 29880, fck_rev2: 38766, fck_rev3: 32766 },
+                        { desc: "Equipamentos e louças sanitárias", fck_orig: 55000, hoturb_orig: 45000, hoturb_rev1: 25000, fck_rev2: 45000, fck_rev3: 40000 },
+                        { desc: "Pinturas interiores e exteriores", fck_orig: 60000, hoturb_orig: 50000, hoturb_rev1: 40000, fck_rev2: 50000, fck_rev3: 45000 },
+                        { desc: "Lareira com recuperador de calor", fck_orig: 8540, hoturb_orig: 6500, hoturb_rev1: 0, fck_rev2: 8540, fck_rev3: 0 }
                     ]
                 },
                 {
                     chapter: "Instalações de Climatização e Ventilação (AVAC)",
                     items: [
-                        { desc: "Pré-instalação de Ar Condicionado", fck: 15000, hoturb_orig: 15000, hoturb_rev1: 17342 },
-                        { desc: "Unidades interiores e exteriores de AC", fck: 29861, hoturb_orig: 0, hoturb_rev1: 0 },
-                        { desc: "Sistema de Ventilação Mecânica (VMC)", fck: 17518, hoturb_orig: 0, hoturb_rev1: 0 },
-                        { desc: "Pavimento radiante hidráulico", fck: 37344, hoturb_orig: 35000, hoturb_rev1: 0 },
-                        { desc: "Bomba de calor para AQS e climatização", fck: 25000, hoturb_orig: 20000, hoturb_rev1: 0 },
-                        { desc: "Painéis solares térmicos (AQS)", fck: 12000, hoturb_orig: 8000, hoturb_rev1: 0 },
-                        { desc: "Painéis solares fotovoltaicos", fck: 18000, hoturb_orig: 12000, hoturb_rev1: 0 },
-                    ]
-                },
-                {
-                    chapter: "Instalações Elétricas e Telecomunicações",
-                    items: [
-                        { desc: "Instalação Elétrica (quadros, cablagem)", fck: 50000, hoturb_orig: 45000, hoturb_rev1: 24318 },
-                        { desc: "Aparelhagem (tomadas, interruptores)", fck: 18500, hoturb_orig: 15000, hoturb_rev1: 4510 },
-                        { desc: "Iluminação (pontos de luz, luminárias)", fck: 13480, hoturb_orig: 10243, hoturb_rev1: 0 },
-                        { desc: "Domótica (sistema KNX)", fck: 18500, hoturb_orig: 12000, hoturb_rev1: 0 },
-                        { desc: "Instalação de Telecomunicações (ITDE)", fck: 4510, hoturb_orig: 4510, hoturb_rev1: 4510 },
-                    ]
-                },
-                 {
-                    chapter: "Redes de Águas e Esgotos",
-                    items: [
-                        { desc: "Rede de abastecimento de água", fck: 10500, hoturb_orig: 15523, hoturb_rev1: 15523 },
-                        { desc: "Rede de drenagem de águas residuais e pluviais", fck: 8076, hoturb_orig: 12134, hoturb_rev1: 12134 },
-                    ]
-                },
-                {
-                    chapter: "Paisagismo e Arranjos Exteriores",
-                    items: [
-                        { desc: "Movimento de terras e modelação de terreno", fck: 12000, hoturb_orig: 10000, hoturb_rev1: 8500 },
-                        { desc: "Sistema de rega automática", fck: 8000, hoturb_orig: 6500, hoturb_rev1: 5000 },
-                        { desc: "Vedações e muros", fck: 15000, hoturb_orig: 12000, hoturb_rev1: 10000 },
-                        { desc: "Pavimentos exteriores e decks", fck: 14190, hoturb_orig: 12231, hoturb_rev1: 9107 },
-                        { desc: "Plantações e fornecimento de terra", fck: 10000, hoturb_orig: 8000, hoturb_rev1: 7000 },
+                        { desc: "Pré-instalação de Ar Condicionado", fck_orig: 15000, hoturb_orig: 15000, hoturb_rev1: 17342, fck_rev2: 15000, fck_rev3: 15000 },
+                        { desc: "Unidades interiores e exteriores de AC", fck_orig: 29861, hoturb_orig: 0, hoturb_rev1: 0, fck_rev2: 29861, fck_rev3: 29861 },
+                        { desc: "Sistema de Ventilação Mecânica (VMC)", fck_orig: 17518, hoturb_orig: 0, hoturb_rev1: 0, fck_rev2: 17518, fck_rev3: 0 },
+                        { desc: "Pavimento radiante hidráulico", fck_orig: 37344, hoturb_orig: 35000, hoturb_rev1: 0, fck_rev2: 0, fck_rev3: 0 },
+                        { desc: "Bomba de calor para AQS e climatização", fck_orig: 25000, hoturb_orig: 20000, hoturb_rev1: 0, fck_rev2: 25000, fck_rev3: 25000 },
+                        { desc: "Painéis solares (AQS + Fotovoltaico)", fck_orig: 30000, hoturb_orig: 20000, hoturb_rev1: 0, fck_rev2: 30000, fck_rev3: 28000 },
                     ]
                 },
                 {
                     chapter: "Piscina",
                     items: [
-                        { desc: "Construção de Piscina (estrutura, acabamento)", fck: 32663, hoturb_orig: 55000, hoturb_rev1: 0 },
-                        { desc: "Equipamentos de filtração e tratamento", fck: 10000, hoturb_orig: 16755, hoturb_rev1: 0 }
+                        { desc: "Construção de Piscina (estrutura, acabamento)", fck_orig: 32663, hoturb_orig: 55000, hoturb_rev1: 0, fck_rev2: 32663, fck_rev3: 32663 },
+                        { desc: "Equipamentos de filtração e tratamento", fck_orig: 10000, hoturb_orig: 16755, hoturb_rev1: 0, fck_rev2: 10000, fck_rev3: 10000 }
                     ]
                 }
             ],
@@ -392,15 +343,9 @@
                     items: [
                         { label: "Substituir caixilharia de alumínio por PVC de gama alta", reduction: 60000.00 },
                         { label: "Substituir revestimento exterior 'capoto' por reboco pintado", reduction: 20000.00 },
-                        { label: "Substituir madeira maciça por pavimento flutuante AC5", reduction: 15000.00 },
                         { label: "Alterar carpintarias lacadas para melamina/termolaminado", reduction: 35000.00 },
                         { label: "Simplificar móveis de cozinha e bancada", reduction: 25000.00 },
-                        { label: "Reduzir área de revestimento cerâmico nas I.S.", reduction: 40000.00 },
-                        { label: "Substituir louças sanitárias de gama alta por gama média", reduction: 15000.00 },
-                        { label: "Substituir torneiras de design por gama média (ex: Bruma)", reduction: 10000.00 },
                         { label: "Eliminar Lareira com recuperador de calor", reduction: 8540.00 },
-                        { label: "Simplificar guardas e outros elementos de serralharia", reduction: 20000.00 },
-                        { label: "Simplificar detalhes de tetos (sancas, etc.)", reduction: 30000.00 }
                     ]
                 },
                 {
@@ -409,41 +354,21 @@
                         { label: "Eliminar pavimento radiante hidráulico", reduction: 37344.48 },
                         { label: "Eliminar Sistema de Ventilação VMC", reduction: 17517.72 },
                         { label: "Eliminar Ar Condicionado (manter apenas pré-instalação)", reduction: 29860.56 },
-                        { label: "Eliminar Painéis Solares Fotovoltaicos", reduction: 12250.00 }
                     ]
                 },
                 {
                     category: "Instalações Elétricas e Domótica (-68.500 €)",
                     items: [
                         { label: "Eliminar Sistema de Domótica KNX", reduction: 18500.00 },
-                        { label: "Otimizar projeto de iluminação (menos pontos, LEDs standard)", reduction: 25000.00 },
-                        { label: "Utilizar aparelhagem de gama média (ex: Efapel)", reduction: 25000.00 }
+                        { label: "Otimizar projeto de iluminação", reduction: 25000.00 },
                     ]
                 },
                 {
                     category: "Piscina e Jacuzzi (-42.663 €)",
                     items: [
                         { label: "Adiar construção da piscina (deixar pré-instalação)", reduction: 32663.30 },
-                        { label: "Simplificar ou eliminar Jacuzzi", reduction: 10000.00 }
                     ]
                 },
-                {
-                    category: "Paisagismo (-49.190 €)",
-                    items: [
-                        { label: "Implementar projeto mínimo (relva, rega, vedações)", reduction: 25000.00 },
-                        { label: "Adiar plantação de árvores/arbustos de grande porte", reduction: 15000.00 },
-                        { label: "Substituir deck de madeira por compósito ou cerâmico", reduction: 9190.12 }
-                    ]
-                },
-                {
-                    category: "Gestão e Encargos (-115.000 €)",
-                    items: [
-                        { label: "Negociação da margem de lucro do empreiteiro (de 10% para 7%)", reduction: 40000.00 },
-                        { label: "Otimização de custos de estaleiro (aluguer de equipamento, etc.)", reduction: 25000.00 },
-                        { label: "Redução de custos de administração e gestão de projeto", reduction: 20000.00 },
-                        { label: "Ajuste proporcional restante pela redução do custo direto", reduction: 30000.00 }
-                    ]
-                }
             ]
         };
 
@@ -453,106 +378,56 @@
             return new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(value);
         }
 
-        const wrapLabel = (str, max_width) => {
-            let wrapped = [];
-            let current_line = '';
-            str.split(' ').forEach(word => {
-                if ((current_line + ' ' + word).length > max_width) {
-                    wrapped.push(current_line);
-                    current_line = word;
-                } else {
-                    current_line += (current_line.length > 0 ? ' ' : '') + word;
-                }
-            });
-            wrapped.push(current_line);
-            return wrapped;
-        }
-
         const chartOptions = {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    position: 'top',
-                },
+                legend: { position: 'top' },
                 tooltip: {
                     callbacks: {
                         label: function(context) {
                             let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed.y !== null) {
-                                label += formatCurrency(context.parsed.y);
-                            }
+                            if (label) { label += ': '; }
+                            if (context.parsed.y !== null) { label += formatCurrency(context.parsed.y); }
                             return label;
                         }
                     }
                 }
             },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        callback: function(value) {
-                            return (value / 1000) + 'k €';
-                        }
-                    }
-                },
-                x: {
-                    ticks: {
-                        callback: function(value) {
-                            return wrapLabel(this.getLabelForValue(value), 16);
-                        }
-                    }
-                }
+                y: { beginAtZero: true, ticks: { callback: value => (value / 1000) + 'k €' } },
             }
         };
 
         let charts = {};
         function initCharts() {
             if (!charts.total && document.getElementById('totalComparisonChart')) {
-                const totalComparisonCtx = document.getElementById('totalComparisonChart').getContext('2d');
-                charts.total = new Chart(totalComparisonCtx, {
+                const ctx = document.getElementById('totalComparisonChart').getContext('2d');
+                charts.total = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['FCK', 'HOTURB (Orig.)', 'HOTURB (Rev. 01)', 'Mercado (Completo)'],
+                        labels: ['FCK (Orig.)', 'HOTURB (Orig.)', 'HOTURB (Rev1)', 'FCK (Rev2)', 'FCK (Rev3)', 'Mercado'],
                         datasets: [{
                             label: 'Custo Total (€)',
-                            data: [budgetData.fck, budgetData.hoturb, budgetData.hoturb_rev1, budgetData.market],
-                            backgroundColor: ['#a4764e', '#c88a55', '#22c55e', '#3f3c3a'],
-                            borderColor: ['#8c6340', '#a4764e', '#16a34a', '#2c2a29'],
-                            borderWidth: 1
+                            data: Object.values(budgetData.totals),
+                            backgroundColor: ['#a4764e', '#c88a55', '#22c55e', '#b99876', '#f97316', '#3f3c3a'],
                         }]
                     },
                     options: { ...chartOptions, plugins: { legend: { display: false } } }
                 });
             }
             if (!charts.category && document.getElementById('categoryComparisonChart')) {
-                const categoryComparisonCtx = document.getElementById('categoryComparisonChart').getContext('2d');
-                charts.category = new Chart(categoryComparisonCtx, {
+                const ctx = document.getElementById('categoryComparisonChart').getContext('2d');
+                charts.category = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: budgetData.categories.labels,
                         datasets: [
-                            { label: 'FCK', data: budgetData.categories.fck, backgroundColor: '#a4764e' },
-                            { label: 'HOTURB (Orig.)', data: budgetData.categories.hoturb, backgroundColor: '#c88a55' },
-                             { label: 'HOTURB (Rev. 01)', data: budgetData.categories.hoturb_rev1, backgroundColor: '#22c55e' },
-                            { label: 'Mercado', data: budgetData.categories.market, backgroundColor: '#3f3c3a' }
-                        ]
-                    },
-                    options: chartOptions
-                });
-            }
-            if (!charts.architecture && document.getElementById('architectureChart')) {
-                const architectureCtx = document.getElementById('architectureChart').getContext('2d');
-                charts.architecture = new Chart(architectureCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: budgetData.architecture.labels,
-                        datasets: [
-                            { label: 'FCK', data: budgetData.architecture.fck, backgroundColor: '#a4764e' },
-                            { label: 'Mercado', data: budgetData.architecture.market, backgroundColor: '#3f3c3a' }
+                            { label: 'FCK (Orig.)', data: budgetData.categories.fck_orig, backgroundColor: '#a4764e' },
+                            { label: 'HOTURB (Orig.)', data: budgetData.categories.hoturb_orig, backgroundColor: '#c88a55' },
+                            { label: 'HOTURB (Rev1)', data: budgetData.categories.hoturb_rev1, backgroundColor: '#22c55e' },
+                            { label: 'FCK (Rev2)', data: budgetData.categories.fck_rev2, backgroundColor: '#b99876' },
+                            { label: 'FCK (Rev3)', data: budgetData.categories.fck_rev3, backgroundColor: '#f97316' },
                         ]
                     },
                     options: chartOptions
@@ -564,106 +439,80 @@
             const tableBody = document.getElementById('detailed-table-body');
             let html = '';
             budgetData.detailedComparison.forEach(chapter => {
-                html += `<tr class="bg-gray-50 border-b"><td colspan="4" class="px-6 py-3 font-bold text-base text-gray-800">${chapter.chapter}</td></tr>`;
+                html += `<tr class="bg-gray-50 border-b"><td colspan="6" class="px-4 py-3 font-bold text-base text-gray-800">${chapter.chapter}</td></tr>`;
                 chapter.items.forEach(item => {
                     html += `
                         <tr class="bg-white border-b hover:bg-gray-50">
-                            <td class="px-6 py-4 font-medium text-gray-900">${item.desc}</td>
-                            <td class="px-6 py-4 text-right">${formatCurrency(item.fck)}</td>
-                            <td class="px-6 py-4 text-right">${formatCurrency(item.hoturb_orig)}</td>
-                            <td class="px-6 py-4 text-right font-bold text-green-700">${formatCurrency(item.hoturb_rev1)}</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">${item.desc}</td>
+                            <td class="px-4 py-4 text-right">${formatCurrency(item.fck_orig)}</td>
+                            <td class="px-4 py-4 text-right">${formatCurrency(item.hoturb_orig)}</td>
+                            <td class="px-4 py-4 text-right font-bold text-green-700">${formatCurrency(item.hoturb_rev1)}</td>
+                            <td class="px-4 py-4 text-right">${formatCurrency(item.fck_rev2)}</td>
+                            <td class="px-4 py-4 text-right font-bold text-orange-700">${formatCurrency(item.fck_rev3)}</td>
                         </tr>
                     `;
                 });
             });
-            tableBody.innerHTML = html;
+            if (tableBody) tableBody.innerHTML = html;
         }
 
         const optimizationContainer = document.getElementById('optimization-options');
-        const optimizedTotalEl = document.getElementById('optimized-total');
-        const progressBarEl = document.getElementById('progress-bar');
-        const reductionAmountEl = document.getElementById('reduction-amount');
-        const targetMessageEl = document.getElementById('target-message');
+        const initialBudget = budgetData.totals.fck_orig;
         const targetBudget = 800000;
-        const initialBudget = budgetData.fck;
 
-        let optIndex = 0;
-        if (optimizationContainer) {
+        function setupOptimizationSimulator() {
+            if (!optimizationContainer) return;
+            let optIndex = 0;
             budgetData.optimization.forEach((cat) => {
                 const details = document.createElement('details');
                 details.className = 'border rounded-lg bg-white overflow-hidden';
-                
                 const summary = document.createElement('summary');
                 summary.className = 'p-4 font-semibold cursor-pointer flex justify-between items-center bg-gray-50';
-                summary.innerHTML = `
-                    <span>${cat.category}</span>
-                    <span class="arrow transition-transform duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </span>
-                `;
+                summary.innerHTML = `<span>${cat.category}</span><span class="arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg></span>`;
                 details.appendChild(summary);
-
                 const itemsContainer = document.createElement('div');
                 itemsContainer.className = 'p-4 space-y-3 border-t';
-                
                 cat.items.forEach(item => {
                     const optionDiv = document.createElement('div');
                     optionDiv.className = 'flex items-center justify-between text-sm';
-                    optionDiv.innerHTML = `
-                        <label for="opt-${optIndex}" class="flex-grow pr-4 text-gray-700">${item.label}</label>
-                        <div class="flex items-center space-x-3 flex-shrink-0">
-                            <span class="font-semibold text-red-500">-${formatCurrency(item.reduction)}</span>
-                            <input type="checkbox" id="opt-${optIndex}" data-reduction="${item.reduction}" class="h-5 w-5 rounded border-gray-300 text-[#a4764e] focus:ring-[#a4764e] optimization-checkbox">
-                        </div>
-                    `;
+                    optionDiv.innerHTML = `<label for="opt-${optIndex}" class="flex-grow pr-4 text-gray-700">${item.label}</label><div class="flex items-center space-x-3 flex-shrink-0"><span class="font-semibold text-red-500">-${formatCurrency(item.reduction)}</span><input type="checkbox" id="opt-${optIndex}" data-reduction="${item.reduction}" class="h-5 w-5 rounded border-gray-300 text-[#a4764e] focus:ring-[#a4764e] optimization-checkbox"></div>`;
                     itemsContainer.appendChild(optionDiv);
                     optIndex++;
                 });
-
                 details.appendChild(itemsContainer);
                 optimizationContainer.appendChild(details);
             });
+            document.querySelectorAll('.optimization-checkbox').forEach(c => c.addEventListener('change', updateOptimization));
         }
         
-        const checkboxes = document.querySelectorAll('.optimization-checkbox');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateOptimization);
-        });
-
         function updateOptimization() {
-            let currentTotal = initialBudget;
+            const optimizedTotalEl = document.getElementById('optimized-total');
+            const progressBarEl = document.getElementById('progress-bar');
+            const reductionAmountEl = document.getElementById('reduction-amount');
+            const targetMessageEl = document.getElementById('target-message');
+
             let totalReduction = 0;
-            checkboxes.forEach(box => {
-                if (box.checked) {
-                    totalReduction += parseFloat(box.dataset.reduction);
-                }
+            document.querySelectorAll('.optimization-checkbox:checked').forEach(box => {
+                totalReduction += parseFloat(box.dataset.reduction);
             });
-            currentTotal -= totalReduction;
+            let currentTotal = initialBudget - totalReduction;
             
             const totalPossibleReduction = initialBudget - targetBudget;
-            const progress = totalReduction / totalPossibleReduction * 100;
+            const progress = totalPossibleReduction > 0 ? (totalReduction / totalPossibleReduction * 100) : 0;
 
-            if (optimizedTotalEl) optimizedTotalEl.textContent = formatCurrency(currentTotal);
-            if (reductionAmountEl) reductionAmountEl.textContent = `Redução: ${formatCurrency(totalReduction)}`;
-            if (progressBarEl) progressBarEl.style.width = `${Math.min(progress, 100)}%`;
+            if(optimizedTotalEl) optimizedTotalEl.textContent = formatCurrency(currentTotal);
+            if(reductionAmountEl) reductionAmountEl.textContent = `Redução: ${formatCurrency(totalReduction)}`;
+            if(progressBarEl) progressBarEl.style.width = `${Math.min(progress, 100)}%`;
 
-            if (targetMessageEl) {
+            if(targetMessageEl) {
                 if (currentTotal <= targetBudget) {
                     targetMessageEl.textContent = '🎉 Objetivo Atingido!';
                     targetMessageEl.className = 'mt-4 font-semibold text-lg text-green-600';
-                    if (progressBarEl) {
-                        progressBarEl.classList.remove('bg-yellow-500');
-                        progressBarEl.classList.add('bg-green-500');
-                    }
+                    if(progressBarEl) progressBarEl.className = 'bg-green-500 h-4 rounded-full transition-all duration-500';
                 } else {
                     targetMessageEl.textContent = `Faltam ${formatCurrency(currentTotal - targetBudget)} para o alvo.`;
                     targetMessageEl.className = 'mt-4 font-semibold text-lg text-yellow-600';
-                    if (progressBarEl) {
-                        progressBarEl.classList.remove('bg-green-500');
-                        progressBarEl.classList.add('bg-yellow-500');
-                    }
+                    if(progressBarEl) progressBarEl.className = 'bg-yellow-500 h-4 rounded-full transition-all duration-500';
                 }
             }
         }
@@ -684,33 +533,27 @@
         function showPage(index) {
             if (index < 1 || index > totalPages) return;
             currentPage = index;
-
-            pages.forEach((page, i) => {
-                page.classList.toggle('active', (i + 1) === index);
-            });
-
+            pages.forEach((page, i) => page.classList.toggle('active', (i + 1) === index));
             initCharts();
-            
-            prevBtn.disabled = currentPage === 1;
-            nextBtn.disabled = currentPage === totalPages;
-            
-            pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
-            
-            navLinks.forEach(link => {
-                link.classList.toggle('active', parseInt(link.dataset.page) === currentPage);
-            });
+            if(prevBtn) prevBtn.disabled = currentPage === 1;
+            if(nextBtn) nextBtn.disabled = currentPage === totalPages;
+            if(pageIndicator) pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
+            navLinks.forEach(link => link.classList.toggle('active', parseInt(link.dataset.page) === currentPage));
             window.scrollTo(0, 0);
         }
         
-        startAnalysisBtn.addEventListener('click', () => {
-            document.getElementById('cover').classList.remove('active');
-            mainContent.classList.remove('hidden');
-            showPage(1);
-        });
+        if (startAnalysisBtn) {
+            startAnalysisBtn.addEventListener('click', () => {
+                document.getElementById('cover').classList.remove('active');
+                if (mainContent) mainContent.classList.remove('hidden');
+                if (navFooter) navFooter.classList.remove('hidden');
+                showPage(1);
+            });
+        }
 
-        prevBtn.addEventListener('click', () => showPage(currentPage - 1));
-        nextBtn.addEventListener('click', () => showPage(currentPage + 1));
-        gotoDetailedBtn.addEventListener('click', () => showPage(3));
+        if(prevBtn) prevBtn.addEventListener('click', () => showPage(currentPage - 1));
+        if(nextBtn) nextBtn.addEventListener('click', () => showPage(currentPage + 1));
+        if(gotoDetailedBtn) gotoDetailedBtn.addEventListener('click', () => showPage(3));
         
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -721,8 +564,10 @@
         
         document.addEventListener('DOMContentLoaded', () => {
              renderDetailedTable();
+             setupOptimizationSimulator();
         });
 
     </script>
 </body>
 </html>
+
