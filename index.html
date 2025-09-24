@@ -282,10 +282,10 @@
         const budgetData = {
             totals: {
                 fck_orig: 1396658.67,
-                fck_rev2: 1074685.26,
-                fck_rev3: 1003449.88,
                 hoturb_orig: 1308643.23,
                 hoturb_rev1: 846412.12,
+                fck_rev2: 1074685.26,
+                fck_rev3: 1003449.88,
                 market: 1274500.00,
             },
             categories: {
@@ -403,13 +403,23 @@
         function initCharts() {
             if (!charts.total && document.getElementById('totalComparisonChart')) {
                 const ctx = document.getElementById('totalComparisonChart').getContext('2d');
+                const chartLabels = ['FCK (Orig.)', 'HOTURB (Orig.)', 'HOTURB (Rev1)', 'FCK (Rev2)', 'FCK (Rev3)', 'Mercado'];
+                const chartData = [
+                    budgetData.totals.fck_orig,
+                    budgetData.totals.hoturb_orig,
+                    budgetData.totals.hoturb_rev1,
+                    budgetData.totals.fck_rev2,
+                    budgetData.totals.fck_rev3,
+                    budgetData.totals.market
+                ];
+
                 charts.total = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['FCK (Orig.)', 'HOTURB (Orig.)', 'HOTURB (Rev1)', 'FCK (Rev2)', 'FCK (Rev3)', 'Mercado'],
+                        labels: chartLabels,
                         datasets: [{
                             label: 'Custo Total (€)',
-                            data: Object.values(budgetData.totals),
+                            data: chartData,
                             backgroundColor: ['#a4764e', '#c88a55', '#22c55e', '#b99876', '#f97316', '#3f3c3a'],
                         }]
                     },
