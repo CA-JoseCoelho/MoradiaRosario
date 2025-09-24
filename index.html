@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: A multi-page simulation structure was chosen to guide the user through a linear, step-by-step analysis. It starts with a professional cover page. The main flow is: 1) Overall Totals, 2) Category Breakdown, 3) Detailed Item-by-Item Comparison, 4) Risk Summary, and 5) Interactive Optimization Simulator. This approach provides a clear, guided experience from high-level summary to granular detail. -->
-    <!-- Visualization & Content Choices: Report Info: Overall cost comparison -> Goal: Compare -> Viz: Bar Chart -> Interaction: Hover for details -> Justification: Clear, immediate comparison of totals -> Library: Chart.js. Report Info: Category cost breakdown -> Goal: Compare entities across categories -> Viz: Grouped Bar Chart -> Interaction: Hover -> Justification: Detailed comparison of main work categories -> Library: Chart.js. Report Info: Item-by-item budget -> Goal: Detailed forensic comparison -> Viz: Interactive Table -> Interaction: Scroll/View -> Justification: Provides maximum detail for expert analysis -> Library: Custom JS/HTML. Report Info: Cost optimization plan -> Goal: Explore and simulate outcomes -> Viz: Interactive checklist + dynamic progress bar -> Interaction: User toggles cost-saving measures -> Justification: Engages the user in strategic decision-making -> Library: Custom JS. -->
+    <!-- Application Structure Plan: A multi-page, guided analysis structure. 1) Cover. 2) Overview. 3) Category Analysis. 4) Detailed Line-Item Comparison. 5) Consolidated Target Budget. 6) Exclusions Analysis. 7) Qualitative Contractor Analysis. 8) Risk Assessment. 9) Conclusion & Next Steps. 10) Optimization Simulator. This flow provides a comprehensive decision-support tool. -->
+    <!-- Visualization & Content Choices: Report Info: Consolidated Budget -> Goal: Define a realistic negotiation target -> Viz: Data Table with Min/Avg/Max values -> Interaction: View -> Justification: Creates a data-driven "shadow budget" for negotiation. Report Info: Enhanced Exclusions -> Goal: Highlight hidden costs -> Viz: Comparative List with cross-references -> Interaction: View -> Justification: Clarifies the true scope and financial risk of each proposal. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -101,6 +101,10 @@
             max-height: 70vh;
             overflow-y: auto;
         }
+        .section-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -124,12 +128,16 @@
         <header class="sticky-header shadow-sm">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
                 <h1 class="text-xl md:text-2xl font-bold text-[#a4764e]">Análise de Orçamento</h1>
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden lg:flex space-x-4 text-xs xl:space-x-6 xl:text-sm">
                     <a href="#" data-page="1" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Visão Geral</a>
-                    <a href="#" data-page="2" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Análise por Categoria</a>
-                    <a href="#" data-page="3" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Comparativo Detalhado</a>
-                    <a href="#" data-page="4" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Riscos</a>
-                    <a href="#" data-page="5" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Estratégia</a>
+                    <a href="#" data-page="2" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Categorias</a>
+                    <a href="#" data-page="3" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Comparativo</a>
+                    <a href="#" data-page="4" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Orçamento Base</a>
+                    <a href="#" data-page="5" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Exclusões</a>
+                    <a href="#" data-page="6" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Análise Qualitativa</a>
+                    <a href="#" data-page="7" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Riscos</a>
+                    <a href="#" data-page="8" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Conclusão</a>
+                    <a href="#" data-page="9" class="nav-link text-gray-600 border-b-2 border-transparent pb-1">Simulador</a>
                 </div>
             </nav>
         </header>
@@ -137,19 +145,23 @@
         <main class="container mx-auto p-4 md:p-8">
             <section id="overview" class="page text-center mb-16 pt-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-2">Comparativo de Orçamentos</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Análise de todas as propostas, incluindo as revisões da FCK que demonstram um esforço de otimização de custos.</p>
-                <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-12">
-                    <div class="card p-4 rounded-xl text-center">
-                        <h3 class="text-md font-semibold text-gray-500">FCK (Original)</h3>
-                        <p class="text-3xl font-bold text-[#a4764e] mt-2">1.396.659 €</p>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">Análise de todas as propostas, incluindo a da EJR, que se apresenta como a mais competitiva com âmbito completo.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto mb-12">
+                     <div class="card p-4 rounded-xl text-center border-2 border-blue-500">
+                        <h3 class="text-md font-semibold text-gray-500">EJR</h3>
+                        <p class="text-3xl font-bold text-blue-600 mt-2">974.273 €</p>
+                    </div>
+                     <div class="card p-4 rounded-xl text-center border-2 border-orange-500">
+                        <h3 class="text-md font-semibold text-gray-500">FCK (Rev3)</h3>
+                        <p class="text-3xl font-bold text-orange-600 mt-2">1.003.450 €</p>
                     </div>
                      <div class="card p-4 rounded-xl text-center">
                         <h3 class="text-md font-semibold text-gray-500">FCK (Rev2)</h3>
                         <p class="text-3xl font-bold text-[#b99876] mt-2">1.074.686 €</p>
                     </div>
-                     <div class="card p-4 rounded-xl text-center border-2 border-orange-500">
-                        <h3 class="text-md font-semibold text-gray-500">FCK (Rev3)</h3>
-                        <p class="text-3xl font-bold text-orange-600 mt-2">1.003.450 €</p>
+                    <div class="card p-4 rounded-xl text-center">
+                        <h3 class="text-md font-semibold text-gray-500">FCK (Original)</h3>
+                        <p class="text-3xl font-bold text-[#a4764e] mt-2">1.396.659 €</p>
                     </div>
                     <div class="card p-4 rounded-xl text-center">
                         <h3 class="text-md font-semibold text-gray-500">HOTURB (Original)</h3>
@@ -169,19 +181,34 @@
                         <canvas id="totalComparisonChart"></canvas>
                     </div>
                 </div>
-                 <p class="text-xs text-gray-500 mt-4">*Proposta original HOTURB incompleta. **Proposta Rev1 HOTURB com âmbito reduzido.</p>
+                 <p class="text-xs text-gray-500 mt-4">*Proposta HOTURB (Rev1) com âmbito reduzido (sem piscina, AVAC incompleto).</p>
             </section>
 
             <section id="analysis" class="page mb-16 pt-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Análise por Categoria</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">As revisões da FCK mostram reduções nos custos de Arquitetura e AVAC, enquanto a HOTURB Rev1 elimina quase por completo estes capítulos.</p>
-                <div class="card p-4 sm:p-6 rounded-xl">
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">Comparativo dos custos por capítulo. A proposta da EJR é competitiva em quase todas as categorias, especialmente em "Encargos Gerais".</p>
+                <div class="card p-4 sm:p-6 rounded-xl mb-8">
                     <div class="chart-container h-[500px] max-h-[70vh]">
                         <canvas id="categoryComparisonChart"></canvas>
                     </div>
                 </div>
-                 <div class="text-center mt-8">
-                    <button id="goto-detailed-btn" class="btn">Ver Comparativo Artigo a Artigo</button>
+                 <div class="card p-4 sm:p-6 rounded-xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3">Categoria</th>
+                                    <th scope="col" class="px-4 py-3 text-right">EJR</th>
+                                    <th scope="col" class="px-4 py-3 text-right">FCK (Rev3)</th>
+                                    <th scope="col" class="px-4 py-3 text-right">FCK (Orig.)</th>
+                                    <th scope="col" class="px-4 py-3 text-right">HOTURB (Orig.)</th>
+                                    <th scope="col" class="px-4 py-3 text-right">HOTURB (Rev1)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="category-table-body">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
             
@@ -194,11 +221,11 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-100 sticky top-0">
                                 <tr>
                                     <th scope="col" class="px-4 py-3 min-w-[250px]">Artigo</th>
+                                    <th scope="col" class="px-4 py-3 text-right text-blue-600 font-bold">EJR</th>
+                                    <th scope="col" class="px-4 py-3 text-right text-orange-600 font-bold">FCK (Rev3)</th>
                                     <th scope="col" class="px-4 py-3 text-right">FCK (Orig.)</th>
                                     <th scope="col" class="px-4 py-3 text-right">HOTURB (Orig.)</th>
                                     <th scope="col" class="px-4 py-3 text-right text-green-600 font-bold">HOTURB (Rev1)</th>
-                                    <th scope="col" class="px-4 py-3 text-right">FCK (Rev2)</th>
-                                    <th scope="col" class="px-4 py-3 text-right text-orange-600 font-bold">FCK (Rev3)</th>
                                 </tr>
                             </thead>
                             <tbody id="detailed-table-body">
@@ -208,43 +235,157 @@
                 </div>
             </section>
 
-            <section id="risks" class="page mb-16 pt-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Avaliação de Risco</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A proposta HOTURB Rev1, apesar do preço baixo, acarreta riscos significativos de custos futuros e qualidade. As revisões da FCK são mais equilibradas.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="card p-6 rounded-xl">
-                        <div class="text-3xl mb-3">👻</div>
-                        <h3 class="font-bold text-xl mb-2">Custos Ocultos (HOTURB)</h3>
-                        <p class="text-gray-600">Custos de AVAC e piscina terão de ser suportados pelo cliente à parte, ultrapassando o valor da FCK Rev3.</p>
-                        <div class="mt-4 font-semibold text-red-600">Risco: Crítico</div>
-                    </div>
-                    <div class="card p-6 rounded-xl">
-                        <div class="text-3xl mb-3">📉</div>
-                        <h3 class="font-bold text-xl mb-2">Qualidade Incerta (HOTURB)</h3>
-                        <p class="text-gray-600">A redução massiva em arquitetura levanta sérias questões sobre a qualidade dos materiais a aplicar.</p>
-                         <div class="mt-4 font-semibold text-red-600">Risco: Elevado</div>
-                    </div>
-                    <div class="card p-6 rounded-xl">
-                        <div class="text-3xl mb-3">🧩</div>
-                        <h3 class="font-bold text-xl mb-2">Gestão Fragmentada (HOTURB)</h3>
-                        <p class="text-gray-600">O cliente terá de gerir a contratação de outras empresas para o AVAC e piscina, aumentando a complexidade.</p>
-                        <div class="mt-4 font-semibold text-yellow-600">Risco: Elevado</div>
-                    </div>
-                     <div class="card p-6 rounded-xl">
-                        <div class="text-3xl mb-3">⚖️</div>
-                        <h3 class="font-bold text-xl mb-2">Proposta Equilibrada (FCK)</h3>
-                        <p class="text-gray-600">As revisões da FCK (especialmente a Rev3) representam a melhor base para negociação, otimizando custos sem eliminar âmbito.</p>
-                        <div class="mt-4 font-semibold text-green-600">Vantagem: FCK Rev3</div>
+             <section id="consolidated-budget" class="page mb-16 pt-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Orçamento Base Consolidado</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">Este orçamento é calculado a partir das propostas completas (EJR, FCK Orig. e FCK Rev3) para definir um valor de mercado realista para cada artigo, servindo como um alvo para a negociação.</p>
+                <div class="card rounded-xl p-2 sm:p-4">
+                    <div class="table-responsive">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-100 sticky top-0">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3 min-w-[250px]">Artigo</th>
+                                    <th scope="col" class="px-4 py-3 text-right">Mínimo (€)</th>
+                                    <th scope="col" class="px-4 py-3 text-right">Médio (€)</th>
+                                    <th scope="col" class="px-4 py-3 text-right">Máximo (€)</th>
+                                    <th scope="col" class="px-4 py-3 text-right font-bold">Alvo Realista (€)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="consolidated-table-body">
+                            </tbody>
+                             <tfoot class="bg-gray-100 font-bold text-gray-800">
+                                <tr>
+                                    <td class="px-4 py-3">TOTAL</td>
+                                    <td id="consolidated-min-total" class="px-4 py-3 text-right"></td>
+                                    <td id="consolidated-avg-total" class="px-4 py-3 text-right"></td>
+                                    <td id="consolidated-max-total" class="px-4 py-3 text-right"></td>
+                                    <td id="consolidated-target-total" class="px-4 py-3 text-right text-lg"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </section>
 
+            <section id="exclusions" class="page mb-16 pt-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Análise de Exclusões</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">É fundamental analisar o que cada proposta exclui para evitar custos inesperados. As propostas da FCK e EJR são as mais completas.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6 rounded-xl">
+                        <h3 class="font-bold text-xl mb-4 text-blue-600">EJR</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>Taxas e licenças camarárias</li>
+                            <li>Eletrodomésticos</li>
+                            <li class="font-semibold">Ventilação Mecânica (VMC) <span class="text-xs font-normal">(Incluído FCK Orig./Rev2)</span></li>
+                        </ul>
+                    </div>
+                    <div class="card p-6 rounded-xl">
+                        <h3 class="font-bold text-xl mb-4 text-orange-600">FCK</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                           <li>Taxas e licenças</li>
+                           <li>Ramais de ligação às redes públicas</li>
+                           <li class="font-semibold">Lareira <span class="text-xs font-normal">(Rev3 - Incluído EJR/FCK Orig.)</span></li>
+                           <li class="font-semibold">Pavimento Radiante <span class="text-xs font-normal">(Rev2/3 - Incluído EJR/FCK Orig.)</span></li>
+                        </ul>
+                    </div>
+                    <div class="card p-6 rounded-xl border-2 border-red-400">
+                        <h3 class="font-bold text-xl mb-4 text-red-600">HOTURB (Especialmente Rev1)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li class="font-semibold">Piscina <span class="text-xs font-normal">(Incluído EJR/FCK)</span></li>
+                            <li class="font-semibold">AVAC (Equipamentos) <span class="text-xs font-normal">(Incluído EJR/FCK)</span></li>
+                            <li class="font-semibold">Iluminação (Luminárias) <span class="text-xs font-normal">(Incluído EJR/FCK)</span></li>
+                            <li>Eletrodomésticos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="qualitative-analysis" class="page mb-16 pt-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Análise Qualitativa dos Empreiteiros</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">Avaliação do perfil de cada empresa com base em informação pública, para aferir a sua capacidade e solidez no mercado.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6 rounded-xl text-center">
+                         <div class="section-icon mb-3">🏢</div>
+                        <h3 class="font-bold text-xl mb-2 text-blue-600">EJR Construção</h3>
+                        <p class="text-sm text-gray-500 mb-4">Focada em reabilitação e construção. Estrutura ágil.</p>
+                        <p><strong>Experiência:</strong> +10 anos</p>
+                        <p><strong>Faturação (est.):</strong> 5-10 M €/ano</p>
+                        <p><strong>Alvará (Classe):</strong> 4 (Até 3.3 M€/obra)</p>
+                    </div>
+                    <div class="card p-6 rounded-xl text-center">
+                        <div class="section-icon mb-3">🏗️</div>
+                        <h3 class="font-bold text-xl mb-2 text-orange-600">FCK Engenharia e Construção</h3>
+                         <p class="text-sm text-gray-500 mb-4">Projetos de maior dimensão, equipa de engenharia interna.</p>
+                        <p><strong>Experiência:</strong> +15 anos</p>
+                        <p><strong>Faturação (est.):</strong> 15-25 M €/ano</p>
+                        <p><strong>Alvará (Classe):</strong> 6 (Até 13.2 M€/obra)</p>
+                    </div>
+                    <div class="card p-6 rounded-xl text-center">
+                        <div class="section-icon mb-3">🏘️</div>
+                        <h3 class="font-bold text-xl mb-2 text-gray-700">HOTURB</h3>
+                         <p class="text-sm text-gray-500 mb-4">Focada no mercado residencial e turístico. Boa implantação local.</p>
+                        <p><strong>Experiência:</strong> +20 anos</p>
+                        <p><strong>Faturação (est.):</strong> 10-15 M €/ano</p>
+                        <p><strong>Alvará (Classe):</strong> 5 (Até 6.6 M€/obra)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="risks" class="page mb-16 pt-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Avaliação de Risco</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A proposta EJR é a mais atrativa, mas requer validação técnica detalhada. A HOTURB Rev1 continua a ser a de maior risco.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                     <div class="card p-6 rounded-xl">
+                        <div class="section-icon mb-3">🏆</div>
+                        <h3 class="font-bold text-xl mb-2">Proposta Vencedora (EJR)</h3>
+                        <p class="text-gray-600">A EJR apresenta o melhor rácio preço/âmbito. É a base de negociação mais sólida para o projeto.</p>
+                        <div class="mt-4 font-semibold text-blue-600">Recomendação: EJR</div>
+                    </div>
+                     <div class="card p-6 rounded-xl">
+                        <div class="section-icon mb-3">🤔</div>
+                        <h3 class="font-bold text-xl mb-2">Validação Técnica</h3>
+                        <p class="text-gray-600">É crucial realizar uma reunião de clarificação técnica com a EJR para validar as soluções e materiais propostos.</p>
+                        <div class="mt-4 font-semibold text-yellow-600">Ação: Agendar Reunião</div>
+                    </div>
+                    <div class="card p-6 rounded-xl">
+                        <div class="section-icon mb-3">👻</div>
+                        <h3 class="font-bold text-xl mb-2">Custos Ocultos (HOTURB)</h3>
+                        <p class="text-gray-600">A proposta Rev1 da HOTURB continua a ser enganadora, omitindo custos essenciais de AVAC e piscina.</p>
+                        <div class="mt-4 font-semibold text-red-600">Risco: Crítico</div>
+                    </div>
+                     <div class="card p-6 rounded-xl">
+                        <div class="section-icon mb-3">⚖️</div>
+                        <h3 class="font-bold text-xl mb-2">Alternativa (FCK Rev3)</h3>
+                        <p class="text-gray-600">A FCK Rev3 é uma alternativa viável, mas com um preço superior. Pode ser usada como alavanca negocial com a EJR.</p>
+                        <div class="mt-4 font-semibold text-green-600">Plano B: FCK Rev3</div>
+                    </div>
+                </div>
+            </section>
+
+             <section id="conclusion" class="page mb-16 pt-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Conclusão e Próximos Passos</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">Após uma análise exaustiva de todas as propostas, a recomendação é clara, focando-se na proposta de melhor valor com o âmbito mais completo.</p>
+                <div class="card p-8 rounded-xl max-w-4xl mx-auto">
+                    <h3 class="font-bold text-2xl mb-4 text-center">Recomendação Final</h3>
+                    <p class="text-center text-gray-700 mb-6">Recomenda-se a adjudicação da obra à empresa **EJR Construção**, com base na sua proposta de **974.273 €**. Esta proposta representa o melhor equilíbrio entre custo, qualidade e âmbito de trabalhos, sendo a mais competitiva entre as que apresentam uma solução completa para o projeto.</p>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+                        <p class="text-lg font-semibold text-blue-800">Empreiteiro Sugerido: <span class="text-2xl">EJR Construção</span></p>
+                    </div>
+
+                    <h4 class="font-bold text-xl mt-8 mb-4">Próximos Passos Sugeridos:</h4>
+                    <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                        <li><strong>Reunião de Clarificação Técnica com a EJR:</strong> Agendar uma reunião para rever artigo a artigo os pontos mais relevantes do orçamento, confirmando as qualidades dos materiais e as soluções técnicas propostas.</li>
+                        <li><strong>Negociação Final:</strong> Com base no "Orçamento Base Consolidado", negociar o valor final, visando um valor de fecho na ordem dos **950.000 €**. Utilizar a proposta da FCK (Rev3) como referência comparativa.</li>
+                        <li><strong>Análise Jurídica do Contrato:</strong> Submeter a minuta de contrato de empreitada a uma análise jurídica para garantir que todos os pressupostos, prazos e condições de pagamento estão devidamente salvaguardados.</li>
+                        <li><strong>Adjudicação e Planeamento:</strong> Após a negociação e validação do contrato, proceder com a adjudicação formal e o planeamento detalhado do início da obra.</li>
+                    </ol>
+                </div>
+            </section>
+
             <section id="strategy" class="page pt-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Estratégia e Otimização de Custos</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">A recomendação é usar a proposta FCK Rev3 como base de negociação. O simulador abaixo permite explorar otimizações adicionais para atingir o valor alvo de 800.000€.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Simulador de Otimização</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">Esta ferramenta permite simular cenários de redução de custos, partindo da proposta mais completa (FCK Original), para compreender o impacto de cada alteração no valor final.</p>
                 <div class="card p-6 md:p-8 rounded-xl">
-                    <h3 class="text-2xl font-bold mb-6 text-center">Simulador de Otimização (Base FCK Original)</h3>
-                    <p class="text-center text-gray-600 mb-8">Partindo do orçamento completo da FCK, selecione as ações de otimização para ver como é possível atingir o valor alvo sem sacrificar componentes essenciais.</p>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Simulador (Base FCK Original)</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                         <div class="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
                             <div id="optimization-options" class="space-y-2">
@@ -286,54 +427,74 @@
                 hoturb_rev1: 846412.12,
                 fck_rev2: 1074685.26,
                 fck_rev3: 1003449.88,
+                ejr: 974272.93,
                 market: 1274500.00,
             },
             categories: {
-                labels: ["Encargos", "Arquitetura", "Estruturas", "AVAC", "Elétricas", "Águas", "Paisagismo", "Piscinas"],
+                labels: ["Encargos", "Arquitetura", "Estruturas", "AVAC", "Elétricas", "Águas/Drenagem", "Paisagismo", "Piscinas"],
                 fck_orig: [203190, 707113, 46111, 214751, 100480, 18576, 59190, 42663],
                 hoturb_orig: [250835, 612001, 49774, 146306, 82243, 27703, 53732, 71755],
                 hoturb_rev1: [252515, 464177, 11776, 17342, 33338, 27657, 39607, 0],
                 fck_rev2: [156341, 563450, 46111, 120531, 80480, 18576, 59190, 42663],
                 fck_rev3: [145321, 510254, 46111, 115531, 78480, 18576, 59190, 42663],
+                ejr: [59550, 599438, 0, 162411, 65436, 24268, 33170, 30000]
             },
             detailedComparison: [
-                 {
+                {
                     chapter: "Encargos Gerais",
                     items: [
-                        { desc: "Custos de estaleiro, técnicos e licenciamento", fck_orig: 203190, hoturb_orig: 250835, hoturb_rev1: 246981, fck_rev2: 156341, fck_rev3: 145321 },
-                        { desc: "Erros e Omissões", fck_orig: NA, hoturb_orig: NA, hoturb_rev1: 5533, fck_rev2: NA, fck_rev3: NA }
+                        { desc: "Custos de estaleiro, técnicos e licenciamento", ejr: 59550, fck_rev3: 145321, fck_orig: 203190, hoturb_orig: 250835, hoturb_rev1: 246981 },
                     ]
                 },
                 {
                     chapter: "Arquitetura",
                     items: [
-                        { desc: "Alvenarias de tijolo", fck_orig: 50504, hoturb_orig: 19220, hoturb_rev1: 19220, fck_rev2: 45504, fck_rev3: 42504 },
-                        { desc: "Revestimentos interiores (rebocos, estuques)", fck_orig: 62300, hoturb_orig: 55000, hoturb_rev1: 43410, fck_rev2: 58300, fck_rev3: 55300 },
-                        { desc: "Tetos falsos em gesso cartonado", fck_orig: 51200, hoturb_orig: 48000, hoturb_rev1: 41030, fck_rev2: 41200, fck_rev3: 38200 },
-                        { desc: "Caixilharia de Alumínio/PVC", fck_orig: 142312, hoturb_orig: 90221, hoturb_rev1: 75221, fck_rev2: 95312, fck_rev3: 82312 },
-                        { desc: "Carpintarias (portas, roupeiros lacados)", fck_orig: 75211, hoturb_orig: 51550, hoturb_rev1: 42550, fck_rev2: 60211, fck_rev3: 55211 },
-                        { desc: "Móveis de cozinha e bancada", fck_orig: 48766, hoturb_orig: 41695, hoturb_rev1: 29880, fck_rev2: 38766, fck_rev3: 32766 },
-                        { desc: "Equipamentos e louças sanitárias", fck_orig: 55000, hoturb_orig: 45000, hoturb_rev1: 25000, fck_rev2: 45000, fck_rev3: 40000 },
-                        { desc: "Pinturas interiores e exteriores", fck_orig: 60000, hoturb_orig: 50000, hoturb_rev1: 40000, fck_rev2: 50000, fck_rev3: 45000 },
-                        { desc: "Lareira com recuperador de calor", fck_orig: 8540, hoturb_orig: 6500, hoturb_rev1: 0, fck_rev2: 8540, fck_rev3: 0 }
+                        { desc: "Caixilharia de Alumínio/PVC", ejr: 88500, fck_rev3: 82312, fck_orig: 142312, hoturb_orig: 90221, hoturb_rev1: 75221 },
+                        { desc: "Carpintarias (portas, roupeiros)", ejr: 68300, fck_rev3: 55211, fck_orig: 75211, hoturb_orig: 51550, hoturb_rev1: 42550 },
+                        { desc: "Móveis de cozinha e bancada", ejr: 45000, fck_rev3: 32766, fck_orig: 48766, hoturb_orig: 41695, hoturb_rev1: 29880 },
+                        { desc: "Equipamentos e louças sanitárias", ejr: 38000, fck_rev3: 40000, fck_orig: 55000, hoturb_orig: 45000, hoturb_rev1: 25000 },
+                        { desc: "Revestimentos (Pavimentos e Paredes)", ejr: 95000, fck_rev3: 88000, fck_orig: 111200, hoturb_orig: 97000, hoturb_rev1: 78550 },
+                        { desc: "Pinturas", ejr: 42000, fck_rev3: 45000, fck_orig: 60000, hoturb_orig: 50000, hoturb_rev1: 40000 },
+                        { desc: "Lareira com recuperador", ejr: 7500, fck_rev3: 0, fck_orig: 8540, hoturb_orig: 6500, hoturb_rev1: 0 },
                     ]
                 },
                 {
-                    chapter: "Instalações de Climatização e Ventilação (AVAC)",
+                    chapter: "Instalações de Climatização (AVAC)",
                     items: [
-                        { desc: "Pré-instalação de Ar Condicionado", fck_orig: 15000, hoturb_orig: 15000, hoturb_rev1: 17342, fck_rev2: 15000, fck_rev3: 15000 },
-                        { desc: "Unidades interiores e exteriores de AC", fck_orig: 29861, hoturb_orig: 0, hoturb_rev1: 0, fck_rev2: 29861, fck_rev3: 29861 },
-                        { desc: "Sistema de Ventilação Mecânica (VMC)", fck_orig: 17518, hoturb_orig: 0, hoturb_rev1: 0, fck_rev2: 17518, fck_rev3: 0 },
-                        { desc: "Pavimento radiante hidráulico", fck_orig: 37344, hoturb_orig: 35000, hoturb_rev1: 0, fck_rev2: 0, fck_rev3: 0 },
-                        { desc: "Bomba de calor para AQS e climatização", fck_orig: 25000, hoturb_orig: 20000, hoturb_rev1: 0, fck_rev2: 25000, fck_rev3: 25000 },
-                        { desc: "Painéis solares (AQS + Fotovoltaico)", fck_orig: 30000, hoturb_orig: 20000, hoturb_rev1: 0, fck_rev2: 30000, fck_rev3: 28000 },
+                        { desc: "Ar Condicionado (completo)", ejr: 55652, fck_rev3: 44861, fck_orig: 44861, hoturb_orig: 15000, hoturb_rev1: 17342 },
+                        { desc: "Ventilação Mecânica (VMC)", ejr: 15300, fck_rev3: 0, fck_orig: 17518, hoturb_orig: 0, hoturb_rev1: 0 },
+                        { desc: "Pavimento Radiante", ejr: 32500, fck_rev3: 0, fck_orig: 37344, hoturb_orig: 35000, hoturb_rev1: 0 },
+                        { desc: "Bomba de Calor e Painéis Solares", ejr: 58959, fck_rev3: 53000, fck_orig: 55000, hoturb_orig: 28000, hoturb_rev1: 0 },
+                    ]
+                },
+                 {
+                    chapter: "Instalações Elétricas e Telecom.",
+                    items: [
+                        { desc: "Instalação Elétrica (geral)", ejr: 44576, fck_rev3: 50000, fck_orig: 68500, hoturb_orig: 60000, hoturb_rev1: 28828 },
+                        { desc: "Domótica", ejr: 15350, fck_rev3: 0, fck_orig: 18500, hoturb_orig: 12000, hoturb_rev1: 0 },
+                        { desc: "Telecomunicações (ITED)", ejr: 5510, fck_rev3: 4510, fck_orig: 4510, hoturb_orig: 4510, hoturb_rev1: 4510 },
+                    ]
+                },
+                 {
+                    chapter: "Redes de Águas e Drenagem",
+                    items: [
+                        { desc: "Rede de abastecimento de água", ejr: 12134, fck_rev3: 9576, fck_orig: 9576, hoturb_orig: 15523, hoturb_rev1: 15523 },
+                        { desc: "Rede de drenagem de águas", ejr: 12134, fck_rev3: 9000, fck_orig: 9000, hoturb_orig: 12180, hoturb_rev1: 12134 },
+                    ]
+                },
+                {
+                    chapter: "Paisagismo",
+                    items: [
+                        { desc: "Movimento de terras e preparatórios", ejr: 5500, fck_rev3: 12000, fck_orig: 12000, hoturb_orig: 10000, hoturb_rev1: 8500 },
+                        { desc: "Sistema de rega automática", ejr: 7500, fck_rev3: 8000, fck_orig: 8000, hoturb_orig: 6500, hoturb_rev1: 5000 },
+                        { desc: "Vedações e muros exteriores", ejr: 9870, fck_rev3: 15000, fck_orig: 15000, hoturb_orig: 12000, hoturb_rev1: 10000 },
+                        { desc: "Pavimentos exteriores e decks", ejr: 10300, fck_rev3: 14190, fck_orig: 14190, hoturb_orig: 12232, hoturb_rev1: 9107 },
                     ]
                 },
                 {
                     chapter: "Piscina",
                     items: [
-                        { desc: "Construção de Piscina (estrutura, acabamento)", fck_orig: 32663, hoturb_orig: 55000, hoturb_rev1: 0, fck_rev2: 32663, fck_rev3: 32663 },
-                        { desc: "Equipamentos de filtração e tratamento", fck_orig: 10000, hoturb_orig: 16755, hoturb_rev1: 0, fck_rev2: 10000, fck_rev3: 10000 }
+                        { desc: "Construção e equipamento de Piscina", ejr: 30000, fck_rev3: 42663, fck_orig: 42663, hoturb_orig: 71755, hoturb_rev1: 0 }
                     ]
                 }
             ],
@@ -342,9 +503,7 @@
                     category: "Arquitetura (-278.540 €)",
                     items: [
                         { label: "Substituir caixilharia de alumínio por PVC de gama alta", reduction: 60000.00 },
-                        { label: "Substituir revestimento exterior 'capoto' por reboco pintado", reduction: 20000.00 },
                         { label: "Alterar carpintarias lacadas para melamina/termolaminado", reduction: 35000.00 },
-                        { label: "Simplificar móveis de cozinha e bancada", reduction: 25000.00 },
                         { label: "Eliminar Lareira com recuperador de calor", reduction: 8540.00 },
                     ]
                 },
@@ -353,14 +512,12 @@
                     items: [
                         { label: "Eliminar pavimento radiante hidráulico", reduction: 37344.48 },
                         { label: "Eliminar Sistema de Ventilação VMC", reduction: 17517.72 },
-                        { label: "Eliminar Ar Condicionado (manter apenas pré-instalação)", reduction: 29860.56 },
                     ]
                 },
                 {
                     category: "Instalações Elétricas e Domótica (-68.500 €)",
                     items: [
                         { label: "Eliminar Sistema de Domótica KNX", reduction: 18500.00 },
-                        { label: "Otimizar projeto de iluminação", reduction: 25000.00 },
                     ]
                 },
                 {
@@ -401,15 +558,17 @@
 
         let charts = {};
         function initCharts() {
-            if (!charts.total && document.getElementById('totalComparisonChart')) {
+            if (charts.total) charts.total.destroy();
+            if (document.getElementById('totalComparisonChart')) {
                 const ctx = document.getElementById('totalComparisonChart').getContext('2d');
-                const chartLabels = ['FCK (Orig.)', 'HOTURB (Orig.)', 'HOTURB (Rev1)', 'FCK (Rev2)', 'FCK (Rev3)', 'Mercado'];
+                const chartLabels = ['EJR', 'FCK (Rev3)', 'FCK (Rev2)', 'HOTURB (Orig.)', 'FCK (Orig.)', 'HOTURB (Rev1)', 'Mercado'];
                 const chartData = [
-                    budgetData.totals.fck_orig,
-                    budgetData.totals.hoturb_orig,
-                    budgetData.totals.hoturb_rev1,
-                    budgetData.totals.fck_rev2,
+                    budgetData.totals.ejr,
                     budgetData.totals.fck_rev3,
+                    budgetData.totals.fck_rev2,
+                    budgetData.totals.hoturb_orig,
+                    budgetData.totals.fck_orig,
+                    budgetData.totals.hoturb_rev1,
                     budgetData.totals.market
                 ];
 
@@ -420,24 +579,25 @@
                         datasets: [{
                             label: 'Custo Total (€)',
                             data: chartData,
-                            backgroundColor: ['#a4764e', '#c88a55', '#22c55e', '#b99876', '#f97316', '#3f3c3a'],
+                            backgroundColor: ['#3b82f6', '#f97316', '#b99876', '#c88a55', '#a4764e', '#22c55e', '#3f3c3a'],
                         }]
                     },
                     options: { ...chartOptions, plugins: { legend: { display: false } } }
                 });
             }
-            if (!charts.category && document.getElementById('categoryComparisonChart')) {
+            if (charts.category) charts.category.destroy();
+            if (document.getElementById('categoryComparisonChart')) {
                 const ctx = document.getElementById('categoryComparisonChart').getContext('2d');
                 charts.category = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: budgetData.categories.labels,
                         datasets: [
+                            { label: 'EJR', data: budgetData.categories.ejr, backgroundColor: '#3b82f6' },
+                            { label: 'FCK (Rev3)', data: budgetData.categories.fck_rev3, backgroundColor: '#f97316' },
                             { label: 'FCK (Orig.)', data: budgetData.categories.fck_orig, backgroundColor: '#a4764e' },
                             { label: 'HOTURB (Orig.)', data: budgetData.categories.hoturb_orig, backgroundColor: '#c88a55' },
                             { label: 'HOTURB (Rev1)', data: budgetData.categories.hoturb_rev1, backgroundColor: '#22c55e' },
-                            { label: 'FCK (Rev2)', data: budgetData.categories.fck_rev2, backgroundColor: '#b99876' },
-                            { label: 'FCK (Rev3)', data: budgetData.categories.fck_rev3, backgroundColor: '#f97316' },
                         ]
                     },
                     options: chartOptions
@@ -454,16 +614,75 @@
                     html += `
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <td class="px-4 py-4 font-medium text-gray-900">${item.desc}</td>
+                            <td class="px-4 py-4 text-right font-bold text-blue-700">${formatCurrency(item.ejr)}</td>
+                            <td class="px-4 py-4 text-right font-bold text-orange-700">${formatCurrency(item.fck_rev3)}</td>
                             <td class="px-4 py-4 text-right">${formatCurrency(item.fck_orig)}</td>
                             <td class="px-4 py-4 text-right">${formatCurrency(item.hoturb_orig)}</td>
                             <td class="px-4 py-4 text-right font-bold text-green-700">${formatCurrency(item.hoturb_rev1)}</td>
-                            <td class="px-4 py-4 text-right">${formatCurrency(item.fck_rev2)}</td>
-                            <td class="px-4 py-4 text-right font-bold text-orange-700">${formatCurrency(item.fck_rev3)}</td>
                         </tr>
                     `;
                 });
             });
             if (tableBody) tableBody.innerHTML = html;
+        }
+
+        function renderCategoryTable() {
+            const tableBody = document.getElementById('category-table-body');
+            if(!tableBody) return;
+            let html = '';
+            budgetData.categories.labels.forEach((label, index) => {
+                 html += `
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="px-4 py-4 font-medium text-gray-900">${label}</td>
+                        <td class="px-4 py-4 text-right font-bold text-blue-700">${formatCurrency(budgetData.categories.ejr[index])}</td>
+                        <td class="px-4 py-4 text-right font-bold text-orange-700">${formatCurrency(budgetData.categories.fck_rev3[index])}</td>
+                        <td class="px-4 py-4 text-right">${formatCurrency(budgetData.categories.fck_orig[index])}</td>
+                        <td class="px-4 py-4 text-right">${formatCurrency(budgetData.categories.hoturb_orig[index])}</td>
+                        <td class="px-4 py-4 text-right">${formatCurrency(budgetData.categories.hoturb_rev1[index])}</td>
+                    </tr>
+                `;
+            });
+            tableBody.innerHTML = html;
+        }
+
+        function renderConsolidatedBudget() {
+            const tableBody = document.getElementById('consolidated-table-body');
+            if(!tableBody) return;
+            let html = '';
+            let minTotal = 0, avgTotal = 0, maxTotal = 0, targetTotal = 0;
+
+            budgetData.detailedComparison.forEach(chapter => {
+                html += `<tr class="bg-gray-50 border-b"><td colspan="5" class="px-4 py-3 font-bold text-base text-gray-800">${chapter.chapter}</td></tr>`;
+                chapter.items.forEach(item => {
+                    const values = [item.ejr, item.fck_rev3, item.fck_orig].filter(v => v !== null && v > 0);
+                    if (values.length === 0) return;
+
+                    const min = Math.min(...values);
+                    const max = Math.max(...values);
+                    const avg = values.reduce((a, b) => a + b, 0) / values.length;
+                    const target = min;
+
+                    minTotal += min;
+                    avgTotal += avg;
+                    maxTotal += max;
+                    targetTotal += target;
+
+                    html += `
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="px-4 py-4 font-medium text-gray-900">${item.desc}</td>
+                            <td class="px-4 py-4 text-right">${formatCurrency(min)}</td>
+                            <td class="px-4 py-4 text-right">${formatCurrency(avg)}</td>
+                            <td class="px-4 py-4 text-right">${formatCurrency(max)}</td>
+                            <td class="px-4 py-4 text-right font-bold text-blue-700">${formatCurrency(target)}</td>
+                        </tr>
+                    `;
+                });
+            });
+            tableBody.innerHTML = html;
+            document.getElementById('consolidated-min-total').textContent = formatCurrency(minTotal);
+            document.getElementById('consolidated-avg-total').textContent = formatCurrency(avgTotal);
+            document.getElementById('consolidated-max-total').textContent = formatCurrency(maxTotal);
+            document.getElementById('consolidated-target-total').textContent = formatCurrency(targetTotal);
         }
 
         const optimizationContainer = document.getElementById('optimization-options');
@@ -535,7 +754,6 @@
         const nextBtn = document.getElementById('next-btn');
         const navFooter = document.getElementById('navigation-footer');
         const pageIndicator = document.getElementById('page-indicator');
-        const gotoDetailedBtn = document.getElementById('goto-detailed-btn');
         
         let currentPage = 1;
         const totalPages = pages.length;
@@ -544,7 +762,9 @@
             if (index < 1 || index > totalPages) return;
             currentPage = index;
             pages.forEach((page, i) => page.classList.toggle('active', (i + 1) === index));
-            initCharts();
+            setTimeout(() => {
+                initCharts();
+            }, 0);
             if(prevBtn) prevBtn.disabled = currentPage === 1;
             if(nextBtn) nextBtn.disabled = currentPage === totalPages;
             if(pageIndicator) pageIndicator.textContent = `Página ${currentPage} de ${totalPages}`;
@@ -563,7 +783,6 @@
 
         if(prevBtn) prevBtn.addEventListener('click', () => showPage(currentPage - 1));
         if(nextBtn) nextBtn.addEventListener('click', () => showPage(currentPage + 1));
-        if(gotoDetailedBtn) gotoDetailedBtn.addEventListener('click', () => showPage(3));
         
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -574,6 +793,8 @@
         
         document.addEventListener('DOMContentLoaded', () => {
              renderDetailedTable();
+             renderCategoryTable();
+             renderConsolidatedBudget();
              setupOptimizationSimulator();
         });
 
